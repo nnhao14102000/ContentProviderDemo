@@ -18,9 +18,6 @@ public class BookDBAdapter {
     private static final String DBName = "BookSQLite.db";
     private static final String TableName = "Books";
 
-
-//    private static final String DBName = "Userdetails.db";
-//    private static final String TableName = "Userdetails";
     private static final int DBVersion = 3;
 
     private static final String CREATE_SQL_STATEMENT = "create table "+ TableName

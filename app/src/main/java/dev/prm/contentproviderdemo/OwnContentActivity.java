@@ -34,17 +34,35 @@ public class OwnContentActivity extends AppCompatActivity {
         Toast.makeText(getBaseContext(), uri.toString(), Toast.LENGTH_LONG).show();
     }
 
-    public void clickToRetrieveTitle(View view) {
-        Uri allTitle = BooksProvider.CONTENT_URI;
+    public void clickToUpdateTitle(View view) {
+        EditText txtTitle = findViewById(R.id.edtTitle);
+        EditText txtIsbn = findViewById(R.id.edtISBN);
 
-//        Uri allTitle = Uri.parse("content://dev.nnhao.databasedemo/databases");
+        ContentValues values = new ContentValues();
+        values.put(BooksProvider.KEY_TITLE, txtTitle.getText().toString());
+        values.put(BooksProvider.KEY_ISBN, txtIsbn.getText().toString());
+        int i = getContentResolver().update(BooksProvider.CONTENT_URI, values, "isbn = ?", new String[]{txtIsbn.getText().toString()});
+
+    }
+
+    public void clickToDeleteTitle(View view) {
+        EditText editId = findViewById(R.id.editId);
+        ContentValues values = new ContentValues();
+        String id = editId.getText().toString();
+        if (!id.isEmpty()) {
+            values.put(BooksProvider.KEY_ID, id);
+            int i = getContentResolver().delete(BooksProvider.CONTENT_URI, "_id = ?", new String[]{id});
+            System.out.println(i);
+        }
+    }
+
+    public void clickToRetrieveTitle(View view) {
+        Uri uri = BooksProvider.CONTENT_URI;
 
         Cursor c = null;
         CursorLoader loader = new CursorLoader(this,
-                allTitle, null, null, null, BooksProvider.KEY_TITLE + " desc");
+                uri, null, null, null, BooksProvider.KEY_TITLE + " desc");
 
-//        CursorLoader loader = new CursorLoader(this,
-//                allTitle, null, null, null, "name desc");
         c = loader.loadInBackground();
 
         if(c.moveToFirst()){
@@ -54,20 +72,44 @@ public class OwnContentActivity extends AppCompatActivity {
                 int title = c.getColumnIndex(BooksProvider.KEY_TITLE);
                 int isbn = c.getColumnIndex(BooksProvider.KEY_ISBN);
 
-//                int name = c.getColumnIndex("name");
-//                int contact = c.getColumnIndex("contact");
-//                int dob = c.getColumnIndex("dob");
 
                 result += c.getString(id) + " - " +
                         c.getString(title) + " - " +
                         c.getString(isbn) + "\n";
 
-//                result += c.getString(name) + " - " +
-//                        c.getString(contact) + " - " +
-//                        c.getString(dob) + "\n";
             }while (c.moveToNext());
             TextView txt = findViewById(R.id.txtResult);
             txt.setText(result);
+        }
+    }
+
+    public void clickToViewTitle(View view) {
+        Uri uri = BooksProvider.CONTENT_URI;
+        EditText editId = findViewById(R.id.editId);
+        String idStr = editId.getText().toString();
+
+        Cursor c = null;
+        CursorLoader loader = new CursorLoader(this,
+                uri, null, "_id = ?", new String[] {idStr}, BooksProvider.KEY_TITLE + " desc");
+
+        TextView txt = findViewById(R.id.txtResult);
+        c = loader.loadInBackground();
+        if(c.moveToFirst()){
+            String result = "All Title with ID: " + idStr + "\n";
+            do{
+                int id = c.getColumnIndex(BooksProvider.KEY_ID);
+                int title = c.getColumnIndex(BooksProvider.KEY_TITLE);
+                int isbn = c.getColumnIndex(BooksProvider.KEY_ISBN);
+
+
+                result += c.getString(id) + " - " +
+                        c.getString(title) + " - " +
+                        c.getString(isbn) + "\n";
+
+            }while (c.moveToNext());
+            txt.setText(result);
+        } else {
+            txt.setText("No record found");
         }
     }
 }

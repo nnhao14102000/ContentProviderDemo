@@ -17,38 +17,28 @@
         android:textSize="20sp"
         android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="ISBN"
-        android:textSize="20sp" />
-
-    <EditText
-        android:id="@+id/edtISBN"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <requestFocus />
-    </EditText>
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Title"
-        android:textSize="20sp" />
-
-    <EditText
-        android:id="@+id/edtTitle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/edtISBN"
+            android:hint="ISBN"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <EditText
+            android:id="@+id/edtTitle"
+            android:hint="Title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
         <Button
             android:id="@+id/btnAddTitle"
@@ -58,18 +48,40 @@
             android:onClick="clickToAddTitle" />
 
         <Button
+            android:id="@+id/btnUpdateTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Update title"
+            android:onClick="clickToUpdateTitle" />
+
+        <Button
             android:id="@+id/btnRetrieveTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="clickToRetrieveTitle"
             android:text="Retrieve title" />
 
-    </LinearLayout>
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/editId"
+            android:hint="Book ID"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"/>
 
+        <Button
+            android:id="@+id/btnDeleteTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="clickToDeleteTitle"
+            android:text="Delete title" />
+
+        <Button
+            android:id="@+id/btnViewTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="clickToViewTitle"
+            android:text="View title by ID" />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -77,6 +89,11 @@
             android:text="TextView"
             android:gravity="center"
             android:textSize="24sp"/>
+
+    </LinearLayout>
+
+
+
     </ScrollView>
 
 </LinearLayout>
