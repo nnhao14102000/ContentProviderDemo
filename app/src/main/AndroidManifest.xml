@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="dev.nnhao.contentproviderdemo">
+    package="dev.prm.contentproviderdemo">
 
-    <uses-permission android:name="android.permission.READ_CONTACTS"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -12,7 +12,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ContentProviderDemo">
-        <activity android:name=".OwnContentActivity"></activity>
+        <provider
+            android:name="dev.prm.provider.BookProvider"
+            android:authorities="dev.prm.contentproviderdemo.Books"
+            android:enabled="true"
+            android:exported="true"/>
+
+        <activity android:name=".OwnContentActivity" />
         <activity android:name=".ContactContentActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>

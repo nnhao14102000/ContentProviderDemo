@@ -1,4 +1,4 @@
-package dev.nnhao.db;
+package dev.prm.db;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -8,9 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-import com.google.android.material.tabs.TabLayout;
-
-import dev.nnhao.utils.ToolUtilities;
+import dev.prm.utils.ToolUtilities;
 
 public class BookDBAdapter {
     private static final String KEY_ID = "_id";
@@ -19,6 +17,10 @@ public class BookDBAdapter {
 
     private static final String DBName = "BookSQLite.db";
     private static final String TableName = "Books";
+
+
+//    private static final String DBName = "Userdetails.db";
+//    private static final String TableName = "Userdetails";
     private static final int DBVersion = 3;
 
     private static final String CREATE_SQL_STATEMENT = "create table "+ TableName
@@ -37,15 +39,17 @@ public class BookDBAdapter {
 
         @Override
         public void onCreate(SQLiteDatabase db) {
-            try{
-                Log.d("DBHelper","onCreate");
-                boolean dbExist = ToolUtilities.checkDB(context, DBName);
-                if(dbExist){
-                    db.execSQL(DROP_TABLE_STATEMENT);
-                }
-            }catch (SQLException e){
-                e.printStackTrace();
-            }
+//            try{
+//                Log.d("DBHelper","onCreate");
+//                boolean dbExist = ToolUtilities.checkDB(context, DBName);
+//                if(!dbExist){
+//                        db.execSQL(CREATE_SQL_STATEMENT);
+//                }
+//            }catch (SQLException e){
+//                e.printStackTrace();
+//            }
+
+            db.execSQL(CREATE_SQL_STATEMENT);
         }
 
         @Override

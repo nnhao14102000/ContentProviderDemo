@@ -1,4 +1,4 @@
-package dev.nnhao.contentproviderdemo;
+package dev.prm.contentproviderdemo;
 
 import android.content.Context;
 

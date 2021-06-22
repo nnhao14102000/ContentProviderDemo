@@ -1,24 +1,30 @@
-package dev.nnhao.contentproviderdemo;
+package dev.prm.contentproviderdemo;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
+import android.Manifest;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-import dev.nnhao.utils.ToolUtilities;
+import dev.prm.utils.ToolUtilities;
 
 public class MainActivity extends AppCompatActivity {
+
+    private Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.READ_CONTACTS},1);
+        ActivityCompat.requestPermissions(MainActivity.this,new String[]{Manifest.permission.WRITE_CONTACTS}, 1);
     }
 
     public void clickToOpenContact(View view) {
-        Intent intent = new Intent(this, ContactContentActivity.class);
+        intent = new Intent(MainActivity.this, ContactContentActivity.class);
         startActivity(intent);
     }
 
@@ -32,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void clickToOpenOwn(View view) {
-        Intent intent = new Intent(this, OwnContentActivity.class);
+        intent = new Intent(MainActivity.this, OwnContentActivity.class);
         startActivity(intent);
     }
 }

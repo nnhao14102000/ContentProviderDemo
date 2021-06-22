@@ -1,4 +1,4 @@
-package dev.nnhao.provider;
+package dev.prm.provider;
 
 import android.content.ContentProvider;
 import android.content.ContentUris;
@@ -15,12 +15,10 @@ import android.text.TextUtils;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.google.android.material.tabs.TabLayout;
-
-import dev.nnhao.db.BookDBAdapter;
+import dev.prm.db.BookDBAdapter;
 
 public class BooksProvider extends ContentProvider {
-    private static final String PROVIDER_NAME = "dev.nnhao.contentproviderdemo.books";
+    private static final String PROVIDER_NAME = "dev.prm.contentproviderdemo.Books";
     public static final Uri CONTENT_URI = Uri.parse("content://" + PROVIDER_NAME + "/books");
 
     public static final int BOOKS = 1;
@@ -29,7 +27,7 @@ public class BooksProvider extends ContentProvider {
     static {
         uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
         uriMatcher.addURI(PROVIDER_NAME, "books", BOOKS);
-        uriMatcher.addURI(PROVIDER_NAME, "books/#", BOOKS);
+        uriMatcher.addURI(PROVIDER_NAME, "books/*", BOOKS);
     }
 
     private SQLiteDatabase bookDB;
@@ -68,9 +66,9 @@ public class BooksProvider extends ContentProvider {
     public String getType(@NonNull Uri uri) {
         switch (uriMatcher.match(uri)){
             case BOOKS:
-                return "vnd.android.cursor.dir/vnd.contentproviderdemo.books";
+                return "vnd.android.cursor.dir/books";
             case BOOK_ID:
-                return "vnd.android.cursor.item/vnd.contentproviderdemo.books";
+                return "vnd.android.cursor.item/books";
             default:
                 throw new IllegalArgumentException("Unknow URI " + uri);
         }

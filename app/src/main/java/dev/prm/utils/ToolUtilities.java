@@ -1,4 +1,4 @@
-package dev.nnhao.utils;
+package dev.prm.utils;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteException;

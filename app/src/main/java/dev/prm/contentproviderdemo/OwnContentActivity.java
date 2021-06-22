@@ -1,4 +1,4 @@
-package dev.nnhao.contentproviderdemo;
+package dev.prm.contentproviderdemo;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.loader.content.CursorLoader;
@@ -12,7 +12,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import dev.nnhao.provider.BooksProvider;
+import dev.prm.provider.BooksProvider;
 
 public class OwnContentActivity extends AppCompatActivity {
 
@@ -37,9 +37,14 @@ public class OwnContentActivity extends AppCompatActivity {
     public void clickToRetrieveTitle(View view) {
         Uri allTitle = BooksProvider.CONTENT_URI;
 
+//        Uri allTitle = Uri.parse("content://dev.nnhao.databasedemo/databases");
+
         Cursor c = null;
         CursorLoader loader = new CursorLoader(this,
                 allTitle, null, null, null, BooksProvider.KEY_TITLE + " desc");
+
+//        CursorLoader loader = new CursorLoader(this,
+//                allTitle, null, null, null, "name desc");
         c = loader.loadInBackground();
 
         if(c.moveToFirst()){
@@ -49,9 +54,17 @@ public class OwnContentActivity extends AppCompatActivity {
                 int title = c.getColumnIndex(BooksProvider.KEY_TITLE);
                 int isbn = c.getColumnIndex(BooksProvider.KEY_ISBN);
 
+//                int name = c.getColumnIndex("name");
+//                int contact = c.getColumnIndex("contact");
+//                int dob = c.getColumnIndex("dob");
+
                 result += c.getString(id) + " - " +
                         c.getString(title) + " - " +
                         c.getString(isbn) + "\n";
+
+//                result += c.getString(name) + " - " +
+//                        c.getString(contact) + " - " +
+//                        c.getString(dob) + "\n";
             }while (c.moveToNext());
             TextView txt = findViewById(R.id.txtResult);
             txt.setText(result);

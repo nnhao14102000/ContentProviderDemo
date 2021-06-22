@@ -1,8 +1,9 @@
-package dev.nnhao.contentproviderdemo;
+package dev.prm.contentproviderdemo;
 
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.loader.content.CursorLoader;
 
+import android.Manifest;
 import android.app.ListActivity;
 import android.database.Cursor;
 import android.net.Uri;
@@ -18,6 +19,8 @@ public class ContactContentActivity extends ListActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contact_content);
+        ActivityCompat.requestPermissions(ContactContentActivity.this, new String[]{Manifest.permission.READ_CONTACTS},1);
+        ActivityCompat.requestPermissions(ContactContentActivity.this,new String[]{Manifest.permission.WRITE_CONTACTS}, 1);
 
         Uri allContacts = ContactsContract.Contacts.CONTENT_URI;
 
