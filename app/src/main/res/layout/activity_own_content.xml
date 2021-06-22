@@ -63,14 +63,20 @@
             android:layout_height="wrap_content"
             android:onClick="clickToRetrieveTitle"
             android:text="Retrieve title" />
+
     </LinearLayout>
 
-    <TextView
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/txtResult"
-        android:text="TextView"
-        android:gravity="center"
-        android:textSize="24sp"/>
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtResult"
+            android:text="TextView"
+            android:gravity="center"
+            android:textSize="24sp"/>
+    </ScrollView>
 
 </LinearLayout>

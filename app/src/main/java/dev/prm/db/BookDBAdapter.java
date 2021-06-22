@@ -39,16 +39,6 @@ public class BookDBAdapter {
 
         @Override
         public void onCreate(SQLiteDatabase db) {
-//            try{
-//                Log.d("DBHelper","onCreate");
-//                boolean dbExist = ToolUtilities.checkDB(context, DBName);
-//                if(!dbExist){
-//                        db.execSQL(CREATE_SQL_STATEMENT);
-//                }
-//            }catch (SQLException e){
-//                e.printStackTrace();
-//            }
-
             db.execSQL(CREATE_SQL_STATEMENT);
         }
 

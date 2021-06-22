@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ContentProviderDemo">
         <provider
-            android:name="dev.prm.provider.BookProvider"
+            android:name="dev.prm.provider.BooksProvider"
             android:authorities="dev.prm.contentproviderdemo.Books"
             android:enabled="true"
             android:exported="true"/>
